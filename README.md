@@ -10,4 +10,4 @@ Please run the next command in your shell if you just want to get the data from 
 -> cd extract
 -> py extract.py
 ```
-This return a csv file to work with.
+This returns a csv file to work with.
