@@ -1,6 +1,15 @@
 *Note: Before you make a webscraping process please review the robots.txt file. In some countries, this process is illegal too.*
 
 # Data Engineering
+### First step.
+Don't forget to create a virtual environment to run this project by executing the next commands in your bash:
+```
+-> cd <path\to\the\directory\where\you\save\or\clone\this\project>
+-> python3 -m venv venv
+-> .\venv\Scripts\activate
+-> pip install requirements.txt
+```
+
 ## ETL Process
 
 ### Extract
