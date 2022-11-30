@@ -1,7 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import logging
+logging.basicConfig(level=logging.INFO)
 import datetime
+
+logger = logging.getLogger(__name__)
 
 
 def get_response(url):
@@ -13,8 +17,12 @@ def get_response(url):
     Returns:
         _object_: _soup created with BS4_
     """
+    logging.info('Getting response...') 
+    
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
+
+    logging.info('Response OK') 
     
     return soup
 
@@ -28,8 +36,12 @@ def extract_links(soup):
     Returns:
         _list_: _list with all links from the given domain_
     """
+    logging.info('Extracting links...')
+
     links = soup.find('section', attrs={'class':'_g'}).find_all('article')
     links = [link.a.get('href') for link in links]
+
+    logging.info('Links OK...')
 
     return links
 
@@ -43,8 +55,12 @@ def extract_titles(soup):
     Returns:
         _list_: _list with all titles from the given domain_
     """
+    logging.info('Extracting titles...')
+
     titles = soup.find('section', attrs={'class':'_g'}).find_all('article')
     titles = [title.a.get_text() for title in titles]
+
+    logging.info('Titles OK')
 
     return titles
 
@@ -59,6 +75,8 @@ def extract_resume(url, links):
     Returns:
         _list_: _list of articles from elpais.com homepage_
     """
+    logging.info('Extracting articles...')
+
     articles = []
     links = [link[1:] for link in links]
     
@@ -70,6 +88,8 @@ def extract_resume(url, links):
         article = article.find('p').get_text()
         articles.append(article)
     
+    logging.info('Articles OK')
+
     return articles
 
 
@@ -96,7 +116,7 @@ def info_to_dict(url):
         }
         news.append(news_details)
         
-    print(news)
+    #print(news)
 
     return news
 
@@ -107,6 +127,8 @@ def run():
     Returns:
         _file_: _csv file with all the data from elpais.com_
     """
+    logging.info('Beginning Scraper...')
+
     URL = 'https://elpais.com/'
     data = info_to_dict(URL)
     now = datetime.datetime.now().strftime('%Y_%m_%d')
@@ -118,6 +140,8 @@ def run():
         writer = csv.DictWriter(f, fieldnames=csv_headers)
         writer.writeheader()
         writer.writerows(data)
+
+    logging.info('Process Done')
 
 
 if __name__ == '__main__':
