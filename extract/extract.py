@@ -47,15 +47,15 @@ def info_to_dict(url):
     articles = extract_resume(url, links)
     
     news = []
-
-    i = 0
-    item = {}
-    while i < len(articles):
-        item['title']= titles[i]
-        item['link'] = links[i]
-        item['article'] = articles[i]
-        news.append(item)
-        i+=1
+    for i, _ in enumerate(articles):
+        news_details = {
+            'title': titles[i],
+            'link': links[i],
+            'article': articles[i]
+        }
+        news.append(news_details)
+        
+    print(news)
 
     return news
 
