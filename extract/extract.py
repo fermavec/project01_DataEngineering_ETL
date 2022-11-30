@@ -5,7 +5,7 @@ import datetime
 
 
 def get_response(url):
-    """Take an url to get a response, then creates a soup to work with.
+    """Takes an url to get a response, then creates a soup to work with.
 
     Args:
         url (_str_): _web page domain_
@@ -20,7 +20,7 @@ def get_response(url):
 
 
 def extract_links(soup):
-    """Take a soup object to get the link information from elpais.com
+    """Takes a soup object to get the link information from elpais.com
 
     Args:
         soup (_object_): _Soup created with get_response(url)_
@@ -35,7 +35,7 @@ def extract_links(soup):
 
 
 def extract_titles(soup):
-    """Take the a soup object to get the title from elpais.com
+    """Takes the a soup object to get the title from elpais.com
 
     Args:
         soup (_object_): _Soup created with get_response(url)_
