@@ -114,10 +114,10 @@ def run():
     fill_na_titles(df)
     set_date(df)
     token_count(df, 'article')
-
+    
     clean_filename = 'clean_csv'
     
-    df.to_csv(clean_filename+'.csv')
+    df.to_csv(clean_filename+'.csv', index_label='index')
     #print(df)
 
 
