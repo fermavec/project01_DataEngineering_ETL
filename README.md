@@ -34,3 +34,16 @@ Then you can run:
 -> py transform.py
 ```
 The result is a "clean" csv file in your directory ./transform
+
+### Load
+To load the data in a database I'm gonna use sqlalchemy so please be sure that library is installed in your virtual environment befora run the program. Follow the next commands to get the DB.
+```
+-> cd load
+-> py load.py
+```
+You will find a fille called articles.db.
+
+## Thanks
+There is no final recomendation just have fun changing and playing with this code on your computer. 
+
+You can follow me on instagram, twitter, Facebook, Medium, Github and Linkedin as @fermavec or you can visit my webpage: http://fermavec.com
