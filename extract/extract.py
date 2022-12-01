@@ -19,8 +19,12 @@ def get_response(url):
     """
     logging.info('Getting response...') 
     
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'lxml')
+    try:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'lxml')
+    except Exception as e:
+        print('URL response error')
+        print(e)
 
     logging.info('Response OK') 
     
@@ -81,12 +85,16 @@ def extract_resume(url, links):
     links = [link[1:] for link in links]
     
     for link in links:
-        visit = url + link
-        response = requests.get(visit)
-        soup = BeautifulSoup(response.text, 'lxml')
-        article = soup.find('article', attrs={'class':'_g'})
-        article = article.find('p').get_text()
-        articles.append(article)
+        try:
+            visit = url + link
+            response = requests.get(visit)
+            soup = BeautifulSoup(response.text, 'lxml')
+            article = soup.find('article', attrs={'class':'_g'})
+            article = article.find('p').get_text()
+            articles.append(article)
+        except Exception as e:
+            print('response error')
+            print(e)
     
     logging.info('Articles OK')
 
